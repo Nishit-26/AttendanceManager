@@ -1,14 +1,26 @@
 package com.example.attendancemanager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PatternMatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.regex.Pattern;
 
 public class Signup extends AppCompatActivity {
 
@@ -16,6 +28,8 @@ public class Signup extends AppCompatActivity {
     Button signup;
     TextView txtlogin;
 
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = firebaseDatabase.getReference("Users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +48,7 @@ public class Signup extends AppCompatActivity {
         txtlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),Login.class));
+                startActivity(new Intent(getApplicationContext(), Login.class));
                 finish();
             }
         });
@@ -44,24 +58,34 @@ public class Signup extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 String inputUsername = username.getText().toString();
                 String inputPassword = password.getText().toString();
                 String inputEmail = email.getText().toString();
 
-               if (inputUsername.isEmpty()){
+                if (inputUsername.isEmpty()) {
                     username.setError("Username is required!");
                     username.requestFocus();
-                }else if (inputPassword.isEmpty()){
+                } else if (inputPassword.isEmpty()) {
                     password.setError("Password is required!");
                     password.requestFocus();
-                }else if (inputEmail.isEmpty()){
+                } else if (inputEmail.isEmpty()) {
                     email.setError("Email is required!");
                     email.requestFocus();
-                }else if (inputEmail.matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$")){
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(inputEmail).matches()) {
                     email.setError("email is not valid");
                     email.requestFocus();
-                }else {
-                    startActivity(new Intent(getApplicationContext(),Home.class));
+                } else {
+
+                    User user = new User(inputUsername,inputEmail,inputPassword);
+                    databaseReference.child(inputUsername).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(getApplicationContext(),"Register Successful!",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(),Home.class));
+                        }
+                    });
+
                 }
             }
         });
