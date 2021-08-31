@@ -30,6 +30,9 @@ public class Login extends AppCompatActivity {
     Button login;
     TextView forgot,txtsignup;
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("User");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +46,34 @@ public class Login extends AppCompatActivity {
         forgot = findViewById(R.id.tvForgot);
         txtsignup = findViewById(R.id.tvSignup);
 
+
+        //signuptext to signup page
         txtsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),Signup.class));
+                startActivity(new Intent(getApplicationContext(), Signup.class));
             }
         });
 
+        //Login button onClick
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String inputUsername = username.getText().toString().trim();
+                String inputPassowrd = password.getText().toString().trim();
+
+                if (inputUsername.isEmpty()) {
+                    username.setError("Field can't be empty");
+                    username.requestFocus();
+                } else if (inputPassowrd.isEmpty()) {
+                    password.setError("Field can't be empty");
+                    password.requestFocus();
+                } else{
+                }
+
+            }
+        });
 
     }
 }

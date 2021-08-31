@@ -81,7 +81,8 @@ public class Signup extends AppCompatActivity {
                     databaseReference.child(inputUsername).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(getApplicationContext(),"Register Successful!",Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(getApplicationContext(),"Registered successfully!",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),Home.class));
                         }
                     });
