@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Attendance Manager</string>
+    <string name="open_navigation_drawer">Open drawer</string>
+    <string name="close_navigation_drawer">Close drawer</string>
 </resources>

@@ -26,7 +26,6 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginBottom="6dp"
                 android:src="@drawable/ic_attendancelogo" />
 
             <TextView
@@ -68,7 +67,7 @@
             android:layout_marginLeft="48dp"
             android:layout_marginTop="46dp"
             android:fontFamily="@font/segoe_ui_bold"
-            android:text="Log in"
+            android:text="Sign up"
             android:textColor="@color/colorTextBlack"
             android:textSize="26dp" />
 
@@ -93,6 +92,21 @@
                 android:textColorHint="@color/colorPlaceHolder"/>
 
             <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="48dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Email address"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="26dp"
+                android:paddingRight="26dp"
+                android:textColor="@color/colorTextBlack"
+                android:textColorHint="@color/colorPlaceHolder"/>
+
+            <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
@@ -107,50 +121,23 @@
                 android:textColor="@color/colorTextBlack"
                 android:textColorHint="@color/colorPlaceHolder"/>
 
-            <CheckBox
-                android:id="@+id/cbRemember"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="48dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginRight="48dp"
-                android:buttonTint="@color/colorBlack"
-                android:fontFamily="@font/segoe_ui"
-                android:text="Remember me"
-                android:textColor="@color/colorTextBlack"
-                android:textSize="18dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="48dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginRight="48dp"
-                android:weightSum="2">
 
                 <Button
-                    android:id="@+id/btnLogin"
-                    android:layout_width="0dp"
+                    android:id="@+id/btnSignup"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/button_background"
                     android:fontFamily="@font/segoe_ui"
-                    android:text="Log in"
+                    android:text="Sign up"
                     android:textAllCaps="false"
                     android:textColor="@color/colorButtonText"
-                    android:textSize="16dp" />
-
-                <TextView
-                    android:id="@+id/tvForgot"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="28dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/segoe_ui"
-                    android:text="Forgot Password?"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
+                    android:textSize="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="48dp"
+                    android:layout_marginRight="48dp"
+                    />
 
         </LinearLayout>
 
@@ -169,18 +156,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoe_ui"
-                android:text="Don't have an account?"
-                android:textSize="18dp" />
+                android:text="Already have an account?"
+                android:textSize="18dp"/>
 
             <TextView
-                android:id="@+id/tvSignup"
+                android:id="@+id/tvLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
                 android:fontFamily="@font/segoe_ui_bold"
-                android:text="Sign up"
+                android:text="Log in"
+                android:layout_marginLeft="12dp"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="18dp" />
+                android:textSize="18dp"/>
 
         </LinearLayout>
 
