@@ -2,7 +2,6 @@
     <!-- Base application theme. -->
     <style name="Theme.AttendanceManager" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/colorBlack</item>
 
     </style>
 </resources>
