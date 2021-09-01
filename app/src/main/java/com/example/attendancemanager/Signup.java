@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,8 +30,8 @@ public class Signup extends AppCompatActivity {
     Button signup;
     TextView txtlogin;
 
-    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference = firebaseDatabase.getReference("Users");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +45,6 @@ public class Signup extends AppCompatActivity {
         signup = findViewById(R.id.btnSignup);
         txtlogin = findViewById(R.id.tvLogin);
 
-
-        //loginText onClick
-        txtlogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), Login.class));
-                finish();
-            }
-        });
 
         //signup onClick
         signup.setOnClickListener(new View.OnClickListener() {
@@ -77,19 +70,40 @@ public class Signup extends AppCompatActivity {
                     email.requestFocus();
                 } else {
 
-                    User user = new User(inputUsername,inputEmail,inputPassword);
-                    databaseReference.child(inputUsername).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
+                    firebaseAuth.createUserWithEmailAndPassword(inputEmail,inputPassword)
+                            .addOnCompleteListener(Signup.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            Toast.makeText(getApplicationContext(),"Registered successfully!",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),Home.class));
-                        }
-                    });
+                                    if (task.isSuccessful()){
 
+                                        User user = new User(inputUsername,inputEmail,inputPassword);
+                                        databaseReference
+                                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                Toast.makeText(getApplicationContext(),"Register Successful!",Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(getApplicationContext(),Home.class));
+                                            }
+                                        });
+                                    }else {
+                                        Toast.makeText(getApplicationContext(),"Error occured, try again",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                 }
             }
         });
 
+        //loginText onClick
+        txtlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Login.class));
+                finish();
+            }
+        });
     }
 }
