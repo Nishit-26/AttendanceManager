@@ -63,15 +63,7 @@ public class Login extends AppCompatActivity {
                 String inputUsername = username.getText().toString().trim();
                 String inputPassowrd = password.getText().toString().trim();
 
-                if (inputUsername.isEmpty()) {
-                    username.setError("Field can't be empty");
-                    username.requestFocus();
-                } else if (inputPassowrd.isEmpty()) {
-                    password.setError("Field can't be empty");
-                    password.requestFocus();
-                } else{
-                }
-
+                startActivity(new Intent(getApplicationContext(),Home.class));
             }
         });
 

@@ -6,7 +6,7 @@
     android:paddingTop="24dp"
     android:paddingBottom="24dp"
     android:background="@drawable/dialog_background"
-    android:elevation="26dp">
+    android:elevation="12dp">
 
     <TextView
         android:layout_width="match_parent"

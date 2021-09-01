@@ -38,9 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/layoutOfButton"
-            android:layout_below="@+id/toolBar"
-            android:layout_marginTop="5dp"
-            android:padding="6dp" />
+            android:layout_below="@+id/toolBar" />
 
         <RelativeLayout
             android:id="@+id/layoutOfButton"
