@@ -30,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
-    EditText username, password;
+    EditText email, password;
     CheckBox remember;
     Button login;
     TextView forgot,txtsignup;
@@ -41,22 +41,12 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login);
 
         //Hooks
-        username = findViewById(R.id.etUsername);
+        email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
         remember = findViewById(R.id.cbRemember);
         login = findViewById(R.id.btnLogin);
         forgot = findViewById(R.id.tvForgot);
         txtsignup = findViewById(R.id.tvSignup);
-
-
-
-        //signuptext to signup page
-        txtsignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), Signup.class));
-            }
-        });
 
         //Login button onClick
         login.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +57,14 @@ public class Login extends AppCompatActivity {
             }
         });
 
+
+        //signuptext to signup page
+        txtsignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Signup.class));
+            }
+        });
 
     }
 }
