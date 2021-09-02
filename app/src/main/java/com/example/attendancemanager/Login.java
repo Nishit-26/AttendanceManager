@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -34,6 +35,8 @@ public class Login extends AppCompatActivity {
     CheckBox remember;
     Button login;
     TextView forgot,txtsignup;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +50,39 @@ public class Login extends AppCompatActivity {
         login = findViewById(R.id.btnLogin);
         forgot = findViewById(R.id.tvForgot);
         txtsignup = findViewById(R.id.tvSignup);
+        LoadingDialog loadingDialog = new LoadingDialog(Login.this);
 
         //Login button onClick
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                String inputEmail = email.getText().toString();
+                String inputPassword = password.getText().toString();
+
+
+
+                if (inputEmail.isEmpty()){
+                    email.setError("field can't be empty!");
+                    email.requestFocus();
+                }else if (inputPassword.isEmpty()){
+                    password.setError("field can't be empty!");
+                    password.requestFocus();
+                }else{
+
+                    firebaseAuth.signInWithEmailAndPassword(inputEmail,inputPassword)
+                        .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                   startActivity(new Intent(getApplicationContext(),Home.class));
+                                } else {
+                                  Toast.makeText(getApplicationContext(),"username or password is incorrect! try again",Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+                        });
+                }
 
             }
         });
