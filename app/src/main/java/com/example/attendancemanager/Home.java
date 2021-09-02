@@ -8,11 +8,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 import com.google.android.material.navigation.NavigationView;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
 
+    
     Toolbar toolbar;
     RecyclerView recyclerView;
     Button addclass, cancel, add;
@@ -30,6 +33,9 @@ public class Home extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     ClassAdapter classAdapter;
     ArrayList<ClassItem> classItems = new ArrayList<>();
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,7 @@ public class Home extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        ClassAdapter classAdapter = new ClassAdapter(this,classItems);
+        ClassAdapter classAdapter = new ClassAdapter(this, classItems);
         recyclerView.setAdapter(classAdapter);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
@@ -56,6 +62,8 @@ public class Home extends AppCompatActivity {
 
         addclass.setOnClickListener(view -> showDialog());
 
+
+
     }
 
     private void showDialog() {
@@ -63,6 +71,7 @@ public class Home extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog, null);
         alertDialogBuilder.setView(view);
         AlertDialog dialog = alertDialogBuilder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
 
         classname = view.findViewById(R.id.etClass);
