@@ -107,6 +107,7 @@ public class Home extends AppCompatActivity {
         String inputsubjectname = subjectname.getText().toString().trim();
 
         classItems.add(new ClassItem(inputclassname, inputsubjectname));
+        classAdapter.notifyDataSetChanged();
 
     }
 
