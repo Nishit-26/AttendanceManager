@@ -15,9 +15,9 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewhol
 
     Context ct;
 
-    public ClassAdapter(Context context,ArrayList<ClassItem> classItems) {
+    public ClassAdapter(Context context, ArrayList<ClassItem> classItems) {
         this.classItems = classItems;
-        ct=context;
+        ct = context;
     }
 
     ArrayList<ClassItem> classItems;
@@ -26,7 +26,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewhol
     @Override
     public ClassViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.iteam_view,parent,false);
+        View view = layoutInflater.inflate(R.layout.class_item, parent, false);
         return new ClassViewholder(view);
     }
 
@@ -41,10 +41,11 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewhol
         return classItems.size();
     }
 
-    public  class ClassViewholder extends RecyclerView.ViewHolder{
+    public class ClassViewholder extends RecyclerView.ViewHolder {
 
         TextView classname;
         TextView subjectname;
+
         public ClassViewholder(@NonNull View itemView) {
             super(itemView);
             classname = itemView.findViewById(R.id.tv_classname);

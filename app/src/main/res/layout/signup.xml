@@ -8,7 +8,6 @@
     android:weightSum="4"
     tools:context=".Login">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -26,7 +25,8 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_attendancelogo" />
+                android:src="@drawable/ic_attendancelogo"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
                 android:fontFamily="@font/segoe_ui_bold"
                 android:text="Attendance Manager"
                 android:textColor="@color/colorTextWhite"
-                android:textSize="28dp"
+                android:textSize="28sp"
                 tools:ignore="HardcodedText,UnusedAttribute" />
 
             <TextView
@@ -43,7 +43,7 @@
                 android:fontFamily="@font/segoe_ui"
                 android:text="It's easy and quick!"
                 android:textColor="@color/colorTextWhite"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:layout_marginTop="6dp"
                 tools:ignore="HardcodedText,UnusedAttribute" />
 
@@ -51,7 +51,6 @@
 
 
     </RelativeLayout>
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -64,12 +63,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
             android:layout_marginLeft="48dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/segoe_ui_bold"
-            android:text="Sign up"
+            android:text="@string/sign_up"
             android:textColor="@color/colorTextBlack"
-            android:textSize="26dp" />
+            android:textSize="26sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -84,12 +84,13 @@
                 android:layout_marginLeft="48dp"
                 android:layout_marginRight="48dp"
                 android:background="@drawable/edit_text_background"
-                android:hint="Username"
+                android:hint="@string/username"
                 android:inputType="text"
                 android:paddingLeft="26dp"
                 android:paddingRight="26dp"
                 android:textColor="@color/colorTextBlack"
-                android:textColorHint="@color/colorPlaceHolder"/>
+                android:textColorHint="@color/colorPlaceHolder"
+                tools:ignore="Autofill" />
 
             <EditText
                 android:id="@+id/etEmail"
@@ -99,12 +100,13 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginRight="48dp"
                 android:background="@drawable/edit_text_background"
-                android:hint="Email address"
+                android:hint="@string/email_address"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="26dp"
                 android:paddingRight="26dp"
                 android:textColor="@color/colorTextBlack"
-                android:textColorHint="@color/colorPlaceHolder"/>
+                android:textColorHint="@color/colorPlaceHolder"
+                tools:ignore="Autofill" />
 
             <EditText
                 android:id="@+id/etPassword"
@@ -114,27 +116,63 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginRight="48dp"
                 android:background="@drawable/edit_text_background"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:paddingLeft="26dp"
                 android:paddingRight="26dp"
                 android:textColor="@color/colorTextBlack"
-                android:textColorHint="@color/colorPlaceHolder"/>
+                android:textColorHint="@color/colorPlaceHolder"
+                tools:ignore="Autofill" />
+
+            <RadioGroup
+                android:id="@+id/gender_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginRight="48dp"
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_marginTop="14dp"
+                >
+
+                <RadioButton
+                    android:id="@+id/gender_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/male"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:textColor="@color/colorTextBlack"
+                    android:buttonTint="@color/colorBlack"
+                    android:layout_weight="1"/>
+
+                <RadioButton
+                    android:id="@+id/gender_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/female"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:textColor="@color/colorTextBlack"
+                    android:buttonTint="@color/colorBlack"
+                    android:layout_weight="1"/>
+
+            </RadioGroup>
 
 
 
                 <Button
                     android:id="@+id/btnSignup"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/button_background"
                     android:fontFamily="@font/segoe_ui"
-                    android:text="Sign up"
+                    android:text="@string/sign_up"
                     android:textAllCaps="false"
                     android:textColor="@color/colorButtonText"
-                    android:textSize="16dp"
-                    android:layout_marginTop="24dp"
+                    android:textSize="16sp"
+                    android:layout_marginTop="14dp"
                     android:layout_marginLeft="48dp"
                     android:layout_marginRight="48dp"
                     />
@@ -156,23 +194,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoe_ui"
-                android:text="Already have an account?"
-                android:textSize="18dp"/>
+                android:text="@string/already_have_an_account"
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/tvLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoe_ui_bold"
-                android:text="Log in"
+                android:text="@string/log_in"
                 android:layout_marginLeft="12dp"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="18dp"/>
+                android:textSize="18sp"
+                android:layout_marginStart="12dp" />
 
         </LinearLayout>
 
-
     </RelativeLayout>
-
 
 </LinearLayout>

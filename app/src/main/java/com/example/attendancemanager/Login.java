@@ -34,9 +34,8 @@ import com.google.firebase.database.ValueEventListener;
 public class Login extends AppCompatActivity {
 
     EditText email, password;
-    CheckBox remember;
     Button login;
-    TextView forgot,txtsignup;
+    TextView forgot, txtsignup;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseUser firebaseUser;
 
@@ -48,13 +47,13 @@ public class Login extends AppCompatActivity {
         //Hooks
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
-        remember = findViewById(R.id.cbRemember);
         login = findViewById(R.id.btnLogin);
         forgot = findViewById(R.id.tvForgot);
         txtsignup = findViewById(R.id.tvSignup);
         LoadingDialog loadingDialog = new LoadingDialog(Login.this);
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        //Check weather User is login or not
+        /*firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
             // User is signed in
             Intent i = new Intent(Login.this, Home.class);
@@ -63,7 +62,7 @@ public class Login extends AppCompatActivity {
         } else {
             // User is signed out
             Log.d(TAG, "onAuthStateChanged:signed_out");
-        }
+        }*/
 
         //Login button onClick
         login.setOnClickListener(new View.OnClickListener() {
@@ -74,35 +73,34 @@ public class Login extends AppCompatActivity {
                 String inputPassword = password.getText().toString();
 
 
-
-                if (inputEmail.isEmpty()){
+                if (inputEmail.isEmpty()) {
                     email.setError("field can't be empty!");
                     email.requestFocus();
-                }else if (inputPassword.isEmpty()){
+                } else if (inputPassword.isEmpty()) {
                     password.setError("field can't be empty!");
                     password.requestFocus();
-                }else{
+                } else {
 
-                        firebaseAuth.signInWithEmailAndPassword(inputEmail, inputPassword)
-                                .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful()) {
-                                            startActivity(new Intent(getApplicationContext(), Home.class));
-                                        } else {
-                                            Toast.makeText(getApplicationContext(), "username or password is incorrect! try again", Toast.LENGTH_SHORT).show();
+                    firebaseAuth.signInWithEmailAndPassword(inputEmail, inputPassword)
+                            .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        startActivity(new Intent(getApplicationContext(), Home.class));
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "username or password is incorrect! try again", Toast.LENGTH_SHORT).show();
 
-                                        }
                                     }
-                                });
+                                }
+                            });
 
                 }
 
             }
         });
+        //End of loginOnclick
 
-
-        //signuptext to signup page
+        //signupText to signup page
         txtsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

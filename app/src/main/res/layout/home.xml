@@ -16,7 +16,8 @@
         android:layout_height="match_parent"
         app:menu="@menu/side_menu"
         app:headerLayout="@layout/header_file"
-        android:layout_gravity="bottom|left"/>
+        android:layout_gravity="bottom|left"
+        tools:ignore="RtlHardcoded" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,7 +32,7 @@
             android:elevation="12dp"
             app:title="Attendance Manager"
             app:titleTextColor="@color/colorTextWhite"
-            tools:ignore="NewApi" />
+            tools:ignore="NewApi,UnusedAttribute" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_recyclerview"
@@ -48,19 +49,30 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/card_background"
             android:elevation="36dp"
-            android:padding="12dp">
+            android:padding="12dp"
+            tools:ignore="UnusedAttribute">
 
             <Button
                 android:id="@+id/btnAddclass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginRight="100dp"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/button_background"
+                android:drawableStart="@drawable/ic_add"
                 android:drawableLeft="@drawable/ic_add"
-                android:text="Add class" />
+                android:text="@string/add_class" />
+
+            <Button
+                android:id="@+id/Logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:drawableStart="@drawable/ic_add"
+                android:drawableLeft="@drawable/ic_add"
+                android:text="logout"/>
 
         </RelativeLayout>
 

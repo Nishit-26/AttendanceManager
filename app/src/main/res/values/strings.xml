@@ -2,4 +2,19 @@
     <string name="app_name">Attendance Manager</string>
     <string name="open_navigation_drawer">Open drawer</string>
     <string name="close_navigation_drawer">Close drawer</string>
+    <string name="class_name">Class Name</string>
+    <string name="subject_name">Subject Name</string>
+    <string name="add_class">Add class</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="log_in">Log in</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="username">Username</string>
+    <string name="email_address">Email address</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 </resources>

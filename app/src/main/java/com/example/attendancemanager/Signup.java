@@ -10,6 +10,8 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,11 +28,11 @@ public class Signup extends AppCompatActivity {
     EditText username, email, password;
     Button signup;
     TextView txtlogin;
-
+    RadioButton radioButton;
+    RadioGroup radioGroup;
+    String gender;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +45,14 @@ public class Signup extends AppCompatActivity {
         email = findViewById(R.id.etEmail);
         signup = findViewById(R.id.btnSignup);
         txtlogin = findViewById(R.id.tvLogin);
-
+        radioGroup = findViewById(R.id.gender_group);
         LoadingDialog loadingDialog = new LoadingDialog(Signup.this);
+
 
         //signup onClick
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 String inputUsername = username.getText().toString();
                 String inputPassword = password.getText().toString();
@@ -71,28 +73,25 @@ public class Signup extends AppCompatActivity {
                 } else {
 
                     loadingDialog.startLoadingDialog();
-
-                    firebaseAuth.createUserWithEmailAndPassword(inputEmail,inputPassword)
+                    //Create User and save data
+                    firebaseAuth.createUserWithEmailAndPassword(inputEmail, inputPassword)
                             .addOnCompleteListener(Signup.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                    if (task.isSuccessful()){
-                                        User user = new User(inputUsername,inputEmail,inputPassword);
+                                    if (task.isSuccessful()) {
+                                        User user = new User(inputUsername, inputEmail, inputPassword);
                                         databaseReference
                                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                 .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-
-                                                Toast.makeText(getApplicationContext(),"Register Successful!",Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(getApplicationContext(),Home.class));
-
+                                                Toast.makeText(getApplicationContext(), "Register Successful!", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(getApplicationContext(), Home.class));
                                             }
                                         });
-
-                                    }else {
-                                        Toast.makeText(getApplicationContext(),"Error occured, try again",Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "Error occured, try again", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });

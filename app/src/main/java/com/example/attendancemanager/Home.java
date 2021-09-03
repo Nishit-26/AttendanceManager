@@ -29,20 +29,16 @@ import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
 
-    
+
     Toolbar toolbar;
     RecyclerView recyclerView;
-    Button addclass, cancel, add;
+    Button addclass, cancel, add, logout;
     EditText classname, subjectname;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
-    RecyclerView.LayoutManager layoutManager;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     ClassAdapter classAdapter;
-    TextView logout;
     ArrayList<ClassItem> classItems = new ArrayList<>();
-
-    private int lastposition;
 
 
     @Override
@@ -57,27 +53,10 @@ public class Home extends AppCompatActivity {
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawerLayout);
         logout = findViewById(R.id.Logout);
-
         setSupportActionBar(toolbar);
-
         recyclerView.setHasFixedSize(true);
-        
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        //retrieving last position from onDestroy
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        lastposition = sharedPreferences.getInt("lastposition",0);
-        recyclerView.scrollToPosition(lastposition);
-
-        //code for save recyclerView state
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                lastposition =  layoutManager.findFirstVisibleItemPosition();
-            }
-        });
 
         //code for set classAdapter in recyclerView
         ClassAdapter classAdapter = new ClassAdapter(this, classItems);
@@ -88,22 +67,17 @@ public class Home extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toolbar.setNavigationIcon(R.drawable.ic_menu);
 
-
         //Code of addClass
         addclass.setOnClickListener(view -> showDialog());
 
+        //logout
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+            }
+        });
 
-    }
-
-
-    //saving lastPosition of recyclerView before onDestroy
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("lastposition",lastposition);
-        editor.apply();
     }
 
     //showDialog method
