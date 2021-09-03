@@ -37,8 +37,8 @@
             <menu>
 
                 <item
-                    android:id="@+id/iteam5"
-                    android:title="subitem of 5" />
+                    android:id="@+id/Logout"
+                    android:title="Log out" />
 
             </menu>
         </item>

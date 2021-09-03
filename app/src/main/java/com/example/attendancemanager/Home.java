@@ -1,5 +1,6 @@
 package com.example.attendancemanager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,16 +9,21 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ClipData;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -31,10 +37,12 @@ public class Home extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     RecyclerView.LayoutManager layoutManager;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     ClassAdapter classAdapter;
+    TextView logout;
     ArrayList<ClassItem> classItems = new ArrayList<>();
 
-
+    private int lastposition;
 
 
     @Override
@@ -48,24 +56,57 @@ public class Home extends AppCompatActivity {
         addclass = findViewById(R.id.btnAddclass);
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawerLayout);
+        logout = findViewById(R.id.Logout);
+
         setSupportActionBar(toolbar);
 
-        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setHasFixedSize(true);
+        
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        //retrieving last position from onDestroy
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        lastposition = sharedPreferences.getInt("lastposition",0);
+        recyclerView.scrollToPosition(lastposition);
+
+        //code for save recyclerView state
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                lastposition =  layoutManager.findFirstVisibleItemPosition();
+            }
+        });
+
+        //code for set classAdapter in recyclerView
         ClassAdapter classAdapter = new ClassAdapter(this, classItems);
         recyclerView.setAdapter(classAdapter);
 
+        //code for toolBar sideMenu
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
         drawerLayout.addDrawerListener(toggle);
         toolbar.setNavigationIcon(R.drawable.ic_menu);
 
-        addclass.setOnClickListener(view -> showDialog());
 
+        //Code of addClass
+        addclass.setOnClickListener(view -> showDialog());
 
 
     }
 
+
+    //saving lastPosition of recyclerView before onDestroy
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("lastposition",lastposition);
+        editor.apply();
+    }
+
+    //showDialog method
     private void showDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog, null);
@@ -81,12 +122,12 @@ public class Home extends AppCompatActivity {
 
         cancel.setOnClickListener(view1 -> dialog.dismiss());
         add.setOnClickListener(view1 -> {
-            addclass();
+            additem();
             dialog.dismiss();
         });
     }
 
-    private void addclass() {
+    private void additem() {
 
         String inputclassname = classname.getText().toString().trim();
         String inputsubjectname = subjectname.getText().toString().trim();
@@ -94,4 +135,5 @@ public class Home extends AppCompatActivity {
         classItems.add(new ClassItem(inputclassname, inputsubjectname));
 
     }
+
 }

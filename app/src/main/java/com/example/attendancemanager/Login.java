@@ -1,5 +1,7 @@
 package com.example.attendancemanager;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,7 +38,7 @@ public class Login extends AppCompatActivity {
     Button login;
     TextView forgot,txtsignup;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,17 @@ public class Login extends AppCompatActivity {
         forgot = findViewById(R.id.tvForgot);
         txtsignup = findViewById(R.id.tvSignup);
         LoadingDialog loadingDialog = new LoadingDialog(Login.this);
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            // User is signed in
+            Intent i = new Intent(Login.this, Home.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        } else {
+            // User is signed out
+            Log.d(TAG, "onAuthStateChanged:signed_out");
+        }
 
         //Login button onClick
         login.setOnClickListener(new View.OnClickListener() {
@@ -70,18 +83,19 @@ public class Login extends AppCompatActivity {
                     password.requestFocus();
                 }else{
 
-                    firebaseAuth.signInWithEmailAndPassword(inputEmail,inputPassword)
-                        .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                   startActivity(new Intent(getApplicationContext(),Home.class));
-                                } else {
-                                  Toast.makeText(getApplicationContext(),"username or password is incorrect! try again",Toast.LENGTH_SHORT).show();
+                        firebaseAuth.signInWithEmailAndPassword(inputEmail, inputPassword)
+                                .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            startActivity(new Intent(getApplicationContext(), Home.class));
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "username or password is incorrect! try again", Toast.LENGTH_SHORT).show();
 
-                                }
-                            }
-                        });
+                                        }
+                                    }
+                                });
+
                 }
 
             }
