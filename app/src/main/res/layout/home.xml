@@ -64,21 +64,8 @@
                 android:drawableLeft="@drawable/ic_add"
                 android:text="@string/add_class"
                 android:drawableStart="@drawable/ic_add" />
-            <Button
-                android:id="@+id/Logout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="120dp"
-                android:layout_marginRight="100dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_background"
-                android:drawableLeft="@drawable/ic_add"
-                android:text="Log out"
-                android:drawableStart="@drawable/ic_add" />
 
         </RelativeLayout>
-
 
     </RelativeLayout>
 
