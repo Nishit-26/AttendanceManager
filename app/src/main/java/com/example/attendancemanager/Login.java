@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
         LoadingDialog loadingDialog = new LoadingDialog(Login.this);
 
         //Check weather User is login or not
-        /*firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
             // User is signed in
             Intent i = new Intent(Login.this, Home.class);
@@ -62,7 +62,7 @@ public class Login extends AppCompatActivity {
         } else {
             // User is signed out
             Log.d(TAG, "onAuthStateChanged:signed_out");
-        }*/
+        }
 
         //Login button onClick
         login.setOnClickListener(new View.OnClickListener() {

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -32,7 +33,7 @@ public class Home extends AppCompatActivity {
 
     Toolbar toolbar;
     RecyclerView recyclerView;
-    Button addclass, cancel, add, logout;
+    Button addclass, cancel, add;
     EditText classname, subjectname;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
@@ -52,14 +53,13 @@ public class Home extends AppCompatActivity {
         addclass = findViewById(R.id.btnAddclass);
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawerLayout);
-        logout = findViewById(R.id.Logout);
         setSupportActionBar(toolbar);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         //code for set classAdapter in recyclerView
-        ClassAdapter classAdapter = new ClassAdapter(this, classItems);
+        classAdapter = new ClassAdapter(this, classItems);
         recyclerView.setAdapter(classAdapter);
 
         //code for toolBar sideMenu
@@ -69,14 +69,6 @@ public class Home extends AppCompatActivity {
 
         //Code of addClass
         addclass.setOnClickListener(view -> showDialog());
-
-        //logout
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-            }
-        });
 
     }
 
