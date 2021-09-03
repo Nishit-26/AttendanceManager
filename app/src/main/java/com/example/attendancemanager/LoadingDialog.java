@@ -2,7 +2,6 @@ package com.example.attendancemanager;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AlertDialog;

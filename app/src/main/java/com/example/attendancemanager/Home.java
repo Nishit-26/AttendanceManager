@@ -1,6 +1,12 @@
 package com.example.attendancemanager;
 
-import androidx.annotation.NonNull;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,22 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.ClipData;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -37,7 +28,6 @@ public class Home extends AppCompatActivity {
     EditText classname, subjectname;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
-    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     ClassAdapter classAdapter;
     ArrayList<ClassItem> classItems = new ArrayList<>();
 
