@@ -1,6 +1,7 @@
 package com.example.attendancemanager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,7 +22,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
@@ -52,6 +56,9 @@ public class Home extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        //load data
+        loadData();
 
         //code for set classAdapter in recyclerView
         classAdapter = new ClassAdapter(this, classItems);
@@ -99,7 +106,29 @@ public class Home extends AppCompatActivity {
         add.setOnClickListener(view1 -> {
             additem();
             dialog.dismiss();
+            saveData();
         });
+    }
+
+    //save classitem of recyclerView
+    private void saveData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPreferance",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(classItems);
+        editor.putString("task list", json);
+        editor.apply();
+    }
+    //method for load saved data
+    private void loadData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPreferance",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("task list",null);
+        Type type = new TypeToken<ArrayList<ClassItem>>() {}.getType();
+        classItems = gson.fromJson(json,type);
+        if (classItems == null){
+            classItems = new ArrayList<>();
+        }
     }
 
     private void additem() {
