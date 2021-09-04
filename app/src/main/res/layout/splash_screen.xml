@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashScreen"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimaryDark"
+    android:layout_centerInParent="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -41,20 +42,19 @@
             android:textColor="@color/colorTextWhite"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="48dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="24dp"
             android:fontFamily="@font/segoe_ui_bold"
             android:text="Nishit Patel"
             android:textColor="@color/colorTextWhite"
-            android:textSize="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="14dp"
-            />
+            android:textSize="20dp" />
 
     </RelativeLayout>
 </LinearLayout>

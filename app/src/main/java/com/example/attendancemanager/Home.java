@@ -77,20 +77,6 @@ public class Home extends AppCompatActivity {
         //Code of addClass
         addclass.setOnClickListener(view -> showDialog());
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-
-                    case R.id.Logout:
-
-                        Toast.makeText(getApplicationContext(), "worked", Toast.LENGTH_SHORT).show();
-                        break;
-                }
-                return true;
-            }
-        });
-
     }
 
     //method for itemClick to student
