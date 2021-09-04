@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "816693788829",
+    "project_id": "attendance-manager-dcfdd",
+    "storage_bucket": "attendance-manager-dcfdd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816693788829:android:8925e34d8efaa7f1c69474",
+        "android_client_info": {
+          "package_name": "com.example.attendancemanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816693788829-nsdsakodmpj8hl37ja568cab9cn1luia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi0NIvOy0PiPbXwCIC9wmI4ZY1nhzjovg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816693788829-nsdsakodmpj8hl37ja568cab9cn1luia.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
