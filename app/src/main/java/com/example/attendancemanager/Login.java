@@ -24,7 +24,7 @@ public class Login extends AppCompatActivity {
 
     EditText email, password;
     Button login;
-    TextView forgot, txtsignup;
+    TextView forgetpass, txtsignup;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseUser firebaseUser;
 
@@ -37,11 +37,11 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
         login = findViewById(R.id.btnLogin);
-        forgot = findViewById(R.id.tvForgot);
+        forgetpass = findViewById(R.id.tvForgetPass);
         txtsignup = findViewById(R.id.tvSignup);
 
         //Check weather User is login or not
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+       /* firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
             // User is signed in
             Intent i = new Intent(Login.this, Home.class);
@@ -50,7 +50,7 @@ public class Login extends AppCompatActivity {
         } else {
             // User is signed out
             Log.d(TAG, "onAuthStateChanged:signed_out");
-        }
+        }*/
 
         //Login button onClick
         login.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +87,14 @@ public class Login extends AppCompatActivity {
             }
         });
         //End of loginOnclick
+
+        //ForgetPassword onClick
+        forgetpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),ForgetPassword.class));
+            }
+        });
 
         //signupText to signup page
         txtsignup.setOnClickListener(new View.OnClickListener() {

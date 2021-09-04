@@ -88,9 +88,14 @@ public class Home extends AppCompatActivity {
         String inputclassname = classname.getText().toString().trim();
         String inputsubjectname = subjectname.getText().toString().trim();
 
-        classItems.add(new ClassItem(inputclassname, inputsubjectname));
-        classAdapter.notifyDataSetChanged();
-
+        if (inputclassname.isEmpty()) {
+            classname.requestFocus();
+        } else if (inputsubjectname.isEmpty()) {
+            subjectname.requestFocus();
+        } else {
+            classItems.add(new ClassItem(inputclassname, inputsubjectname));
+            classAdapter.notifyDataSetChanged();
+        }
     }
 
 }
