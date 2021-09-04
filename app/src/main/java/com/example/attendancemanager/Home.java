@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -39,6 +41,7 @@ public class Home extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ClassAdapter classAdapter;
     ArrayList<ClassItem> classItems = new ArrayList<>();
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Class");
 
 
     @Override
@@ -107,7 +110,19 @@ public class Home extends AppCompatActivity {
             additem();
             dialog.dismiss();
             saveData();
+            datatoFirebase();
+
         });
+    }
+
+    //save entered data of class item into firebase
+    private void datatoFirebase() {
+        String inputclassname = classname.getText().toString().trim();
+        String inputsubjectname = subjectname.getText().toString().trim();
+
+        ClassItem item = new ClassItem(inputclassname,inputsubjectname);
+        databaseReference.push().setValue(item);
+
     }
 
     //save classitem of recyclerView
