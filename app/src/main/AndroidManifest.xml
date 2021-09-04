@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AttendanceManager">
         <activity
+            android:name=".StudentPage"
+            android:exported="true" />
+        <activity
             android:name=".ForgetPassword"
             android:exported="true" />
         <activity

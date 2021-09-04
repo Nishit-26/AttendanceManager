@@ -13,8 +13,16 @@ import java.util.ArrayList;
 
 public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewholder> {
 
-    Context ct;
+    private OnItemClickListener onItemClickListener;
+    public  interface OnItemClickListener{
+        void onClick(int position);
+    }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    Context ct;
     public ClassAdapter(Context context, ArrayList<ClassItem> classItems) {
         this.classItems = classItems;
         ct = context;
@@ -27,7 +35,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewhol
     public ClassViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.class_item, parent, false);
-        return new ClassViewholder(view);
+        return new ClassViewholder(view,onItemClickListener);
     }
 
     @Override
@@ -46,11 +54,13 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewhol
         TextView classname;
         TextView subjectname;
 
-        public ClassViewholder(@NonNull View itemView) {
+        public ClassViewholder(@NonNull View itemView,OnItemClickListener onItemClickListener) {
             super(itemView);
             classname = itemView.findViewById(R.id.tv_classname);
             subjectname = itemView.findViewById(R.id.tv_subjectname);
+            itemView.setOnClickListener(view -> onItemClickListener.onClick(getAdapterPosition()));
 
         }
+
     }
 }

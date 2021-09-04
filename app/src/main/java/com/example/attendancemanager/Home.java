@@ -59,9 +59,9 @@ public class Home extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
         //load data
         loadData();
+
 
         //code for set classAdapter in recyclerView
         classAdapter = new ClassAdapter(this, classItems);
@@ -71,6 +71,8 @@ public class Home extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
         drawerLayout.addDrawerListener(toggle);
         toolbar.setNavigationIcon(R.drawable.ic_menu);
+
+        classAdapter.setOnItemClickListener(position -> gotoItemActivity(position));
 
         //Code of addClass
         addclass.setOnClickListener(view -> showDialog());
@@ -88,6 +90,18 @@ public class Home extends AppCompatActivity {
                 return true;
             }
         });
+
+    }
+
+    //method for itemClick to student
+    private void gotoItemActivity(int position) {
+
+        Intent intent =  new Intent(getApplicationContext(),StudentPage.class);
+        intent.putExtra("classname",classItems.get(position).getClassname());
+        intent.putExtra("subjectname",classItems.get(position).getSubjectname());
+        intent.putExtra("position",position);
+        startActivity(intent);
+
 
     }
 
