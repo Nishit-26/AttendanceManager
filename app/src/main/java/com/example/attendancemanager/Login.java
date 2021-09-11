@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class Login extends AppCompatActivity {
     TextView forgetpass, txtsignup;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseUser firebaseUser;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class Login extends AppCompatActivity {
         login = findViewById(R.id.btnLogin);
         forgetpass = findViewById(R.id.tvForgetPass);
         txtsignup = findViewById(R.id.tvSignup);
+        progressBar = findViewById(R.id.progressBar);
 
         //Check weather User is login or not
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -51,6 +54,7 @@ public class Login extends AppCompatActivity {
             // User is signed out
             Log.d(TAG, "onAuthStateChanged:signed_out");
         }
+
 
         //Login button onClick
         login.setOnClickListener(new View.OnClickListener() {
@@ -68,16 +72,17 @@ public class Login extends AppCompatActivity {
                     password.setError("field can't be empty!");
                     password.requestFocus();
                 } else {
-
+                    progressBar.setVisibility(View.VISIBLE);
                     firebaseAuth.signInWithEmailAndPassword(inputEmail, inputPassword)
                             .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         startActivity(new Intent(getApplicationContext(), Home.class));
+                                        progressBar.setVisibility(View.GONE);
                                     } else {
                                         Toast.makeText(getApplicationContext(), "username or password is incorrect! try again", Toast.LENGTH_SHORT).show();
-
+                                        progressBar.setVisibility(View.GONE);
                                     }
                                 }
                             });

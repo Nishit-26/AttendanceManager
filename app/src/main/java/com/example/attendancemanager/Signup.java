@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class Signup extends AppCompatActivity {
     TextView txtlogin;
     RadioGroup radioGroup;
     RadioButton genderMale,genderFemale;
+    ProgressBar progressBar;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -47,6 +49,7 @@ public class Signup extends AppCompatActivity {
         radioGroup = findViewById(R.id.gender_group);
         genderFemale = findViewById(R.id.gender_female);
         genderMale = findViewById(R.id.gender_male);
+        progressBar = findViewById(R.id.progressBar);
 
         //signup process
         signup.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +77,7 @@ public class Signup extends AppCompatActivity {
                     password.requestFocus();
                 }else {
 
+                    progressBar.setVisibility(View.VISIBLE);
                     firebaseAuth.createUserWithEmailAndPassword(inputEmail, inputPass)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -88,17 +92,21 @@ public class Signup extends AppCompatActivity {
                                                         if (task.isSuccessful()) {
                                                             Toast.makeText(getApplicationContext(), "Registeration Successful!", Toast.LENGTH_SHORT).show();
                                                             startActivity(new Intent(getApplicationContext(), Home.class));
+                                                            progressBar.setVisibility(View.GONE);
+
                                                         }
                                                     }
                                                 });
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Error Occured!", Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.GONE);
                                     }
                                 }
                             });
+
                 }
             }
         });
-
+        progressBar.setVisibility(View.GONE);
     }
 }
