@@ -1,164 +1,56 @@
 package com.example.attendancemanager;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Home extends AppCompatActivity {
 
-
-    Toolbar toolbar;
     RecyclerView recyclerView;
-    Button addclass, cancel, add;
-    EditText classname, subjectname;
-    NavigationView navigationView;
-    DrawerLayout drawerLayout;
-    ClassAdapter classAdapter;
-    ArrayList<ClassItem> classItems = new ArrayList<>();
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Class");
-
+    BottomNavigationView bottomNavigationView;
+    FloatingActionButton addClass;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
-        //Hooks
-        toolbar = findViewById(R.id.toolBar);
-        recyclerView = findViewById(R.id.home_recyclerview);
-        addclass = findViewById(R.id.btnAddclass);
-        navigationView = findViewById(R.id.nav_view);
-        drawerLayout = findViewById(R.id.drawerLayout);
-        setSupportActionBar(toolbar);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        //load data
-        loadData();
+        recyclerView = findViewById(R.id.recyclerView);
+        toolbar = findViewById(R.id.toolbar);
+        addClass = findViewById(R.id.btnAdd);
+        bottomNavigationView = findViewById(R.id.bottom_nav);
 
-
-        //code for set classAdapter in recyclerView
-        classAdapter = new ClassAdapter(this, classItems);
-        recyclerView.setAdapter(classAdapter);
-
-        //code for toolBar sideMenu
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
-        drawerLayout.addDrawerListener(toggle);
-        toolbar.setNavigationIcon(R.drawable.ic_menu);
-
-        classAdapter.setOnItemClickListener(position -> gotoItemActivity(position));
-
-        //Code of addClass
-        addclass.setOnClickListener(view -> showDialog());
-
-    }
-
-    //method for itemClick to student
-    private void gotoItemActivity(int position) {
-
-        Intent intent =  new Intent(getApplicationContext(),StudentPage.class);
-        intent.putExtra("classname",classItems.get(position).getClassname());
-        intent.putExtra("subjectname",classItems.get(position).getSubjectname());
-        intent.putExtra("position",position);
-        startActivity(intent);
-
-
-    }
-
-    //showDialog method
-    private void showDialog() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog, null);
-        alertDialogBuilder.setView(view);
-        AlertDialog dialog = alertDialogBuilder.create();
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.show();
-
-        classname = view.findViewById(R.id.etClass);
-        subjectname = view.findViewById(R.id.etSubject);
-        cancel = view.findViewById(R.id.btnCancel);
-        add = view.findViewById(R.id.btnAdd);
-
-        cancel.setOnClickListener(view1 -> dialog.dismiss());
-        add.setOnClickListener(view1 -> {
-            additem();
-            dialog.dismiss();
-            saveData();
-            datatoFirebase();
-
+        //add class onClick
+        addClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog();
+            }
         });
-    }
-
-    //save entered data of class item into firebase
-    private void datatoFirebase() {
-        String inputclassname = classname.getText().toString().trim();
-        String inputsubjectname = subjectname.getText().toString().trim();
-
-        ClassItem item = new ClassItem(inputclassname,inputsubjectname);
-        databaseReference.push().setValue(item);
 
     }
 
-    //save classitem of recyclerView
-    private void saveData() {
-        SharedPreferences sharedPreferences = getSharedPreferences("sharedPreferance",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(classItems);
-        editor.putString("task list", json);
-        editor.apply();
+    private void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.class_dialog, null);
+        builder.setView(view);
+        AlertDialog alert = builder.create();
+        alert.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        alert.show();
+
+        Button btncancel = view.findViewById(R.id.btnCancel);
+        Button btnadd = view.findViewById(R.id.btnAdd);
+
+        btncancel.setOnClickListener(view1 -> alert.dismiss());
     }
-    //method for load saved data
-    private void loadData(){
-        SharedPreferences sharedPreferences = getSharedPreferences("sharedPreferance",MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("task list",null);
-        Type type = new TypeToken<ArrayList<ClassItem>>() {}.getType();
-        classItems = gson.fromJson(json,type);
-        if (classItems == null){
-            classItems = new ArrayList<>();
-        }
-    }
-
-    private void additem() {
-
-        String inputclassname = classname.getText().toString().trim();
-        String inputsubjectname = subjectname.getText().toString().trim();
-
-        if (inputclassname.isEmpty()) {
-            classname.requestFocus();
-        } else if (inputsubjectname.isEmpty()) {
-            subjectname.requestFocus();
-        } else {
-            classItems.add(new ClassItem(inputclassname, inputsubjectname));
-            classAdapter.notifyDataSetChanged();
-        }
-    }
-
 }
