@@ -14,4 +14,5 @@
     <color name="colorPlaceHolder">#FF505050</color>
     <color name="colorAddbtn">#FFFFFF</color>
     <color name="colorItemNav">#FFFFFF</color>
+    <color name="colorDialogBox">#FFFFFF</color>
 </resources>

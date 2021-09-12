@@ -107,6 +107,6 @@ public class Signup extends AppCompatActivity {
                 }
             }
         });
-        progressBar.setVisibility(View.GONE);
+
     }
 }

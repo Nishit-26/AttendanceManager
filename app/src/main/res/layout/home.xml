@@ -16,7 +16,7 @@
         android:id="@+id/toolbar"
         app:titleMarginStart="25dp"
         app:title="Attendance Manager"
-        app:titleTextColor="@color/colorWhite"
+        app:titleTextColor="@color/colorTextWhite"
         />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
