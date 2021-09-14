@@ -5,6 +5,9 @@ public class ClassModel {
     String subjectname;
     int priority;
 
+    public ClassModel() {
+        //empty constructor for firebase
+    }
 
     public ClassModel(String classname, String subjectname, int priority) {
         this.classname = classname;

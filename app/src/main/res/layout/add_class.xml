@@ -8,6 +8,7 @@
     tools:context=".AddClass">
 
     <ImageView
+        android:id="@+id/ivBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/ic_back"
@@ -65,7 +66,7 @@
             android:layout_marginRight="48dp"
             android:background="@drawable/edit_text_background"
             android:hint="Subject name"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:paddingLeft="26dp"
             android:paddingRight="26dp"
             android:textColor="@color/colorTextBlack"
@@ -94,7 +95,7 @@
             />
 
         <Button
-            android:id="@+id/btnAdd"
+            android:id="@+id/btnAddclass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="48dp"
