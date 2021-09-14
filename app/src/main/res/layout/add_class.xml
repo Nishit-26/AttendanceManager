@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddClass">
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_back"
+        app:tint="@color/colorBlack"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="14dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/segoe_ui_bold"
+        android:text="Add Class"
+        android:textColor="@color/colorTextBlack"
+        android:textSize="34sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorBlack"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        >
+
+        <EditText
+            android:id="@+id/etClass"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginRight="48dp"
+            android:background="@drawable/edit_text_background"
+            android:hint="Class name"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="26dp"
+            android:paddingRight="26dp"
+            android:textColor="@color/colorTextBlack"
+            android:textColorHint="@color/colorPlaceHolder"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/etSubject"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="48dp"
+            android:background="@drawable/edit_text_background"
+            android:hint="Subject name"
+            android:inputType="textPassword"
+            android:paddingLeft="26dp"
+            android:paddingRight="26dp"
+            android:textColor="@color/colorTextBlack"
+            android:textColorHint="@color/colorPlaceHolder"
+            tools:ignore="Autofill" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Class Priority :"
+            android:textColor="@color/colorTextBlack"
+            android:fontFamily="@font/segoe_ui"
+            android:textSize="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="48dp"/>
+
+
+        <NumberPicker
+            android:id="@+id/npPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="95dp"
+            android:layout_marginRight="95dp"
+            android:layout_marginTop="6dp"
+            />
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/segoe_ui"
+            android:text="Add"
+            android:textAllCaps="false"
+            android:textColor="@color/colorButtonText"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
