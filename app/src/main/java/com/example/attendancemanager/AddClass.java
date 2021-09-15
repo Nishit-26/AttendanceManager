@@ -26,6 +26,7 @@ public class AddClass extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_class);
 
+        //hooks
         className = findViewById(R.id.etClass);
         subjectName = findViewById(R.id.etSubject);
         priority = findViewById(R.id.npPriority);
@@ -35,15 +36,20 @@ public class AddClass extends AppCompatActivity {
         priority.setMinValue(1);
         priority.setMaxValue(10);
 
+        //Back onClick
         back.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), Home.class));
             finish();
         });
 
+        //add onClick
         add.setOnClickListener(view -> {addClass();
+        startActivity(new Intent(getApplicationContext(),Home.class));
         finish();
         });
     }
+
+    //Methods
 
     private void addClass() {
 

@@ -33,16 +33,20 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
+        //hooks
         toolbar = findViewById(R.id.toolbar);
         addClass = findViewById(R.id.btnAdd);
         bottomNavigationView = findViewById(R.id.bottom_nav);
 
+        //recyclerSetup
         setUpRecyclerView();
 
+        //floatingButton onClick
         addClass.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), AddClass.class)));
 
     }
 
+    //Methods
     private void setUpRecyclerView() {
 
         Query query = classRef.orderBy("priority", Query.Direction.DESCENDING);
@@ -52,11 +56,11 @@ public class Home extends AppCompatActivity {
 
         adapter = new ClassAdapter(options);
 
-
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
             @Override
@@ -66,7 +70,7 @@ public class Home extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                adapter.deleteClass(viewHolder.getAdapterPosition());
+                adapter.deleteClass(viewHolder.getAbsoluteAdapterPosition());
                 Toast.makeText(getApplicationContext(), "class deleted successfully!", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
