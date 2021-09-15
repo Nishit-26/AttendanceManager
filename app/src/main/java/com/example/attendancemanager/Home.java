@@ -44,6 +44,7 @@ public class Home extends AppCompatActivity {
         //floatingButton onClick
         addClass.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), AddClass.class)));
 
+
     }
 
     //Methods

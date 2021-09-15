@@ -44,8 +44,6 @@ public class AddClass extends AppCompatActivity {
 
         //add onClick
         add.setOnClickListener(view -> {addClass();
-        startActivity(new Intent(getApplicationContext(),Home.class));
-        finish();
         });
     }
 
@@ -65,6 +63,9 @@ public class AddClass extends AppCompatActivity {
         ClassModel classModel = new ClassModel(inputClassname,inputSubjectname,inputPriority);
         collectionReference.add(classModel);
         Toast.makeText(getApplicationContext(), "Class added successfully!", Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(getApplicationContext(),Home.class));
+        finish();
 
     }
 }

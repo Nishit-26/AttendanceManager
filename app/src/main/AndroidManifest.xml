@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AttendanceManager">
         <activity
+            android:name=".UserProfile"
+            android:exported="true" />
+        <activity
             android:name=".AddClass"
             android:exported="true" />
         <activity

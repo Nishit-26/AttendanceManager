@@ -13,6 +13,5 @@
     <color name="colorPrimaryText">#BB86Fc</color>
     <color name="colorPlaceHolder">#FFE4E4E4</color>
     <color name="colorAddbtn">#000000</color>
-    <color name="colorItemNav">#FFFFFF</color>
-    <color name="colorDialogBox">#000000</color>
+    <color name="colorBottomNav">#000000</color>
 </resources>
