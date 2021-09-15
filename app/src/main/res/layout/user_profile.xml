@@ -6,14 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".UserProfile">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/bottom_nav_background"
-        android:elevation="24dp"
-        android:padding="6dp"
-        app:menu="@menu/side_menu" />
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_back"
+        app:tint="@color/colorBlack"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="14dp"/>
+
+
 
 </RelativeLayout>

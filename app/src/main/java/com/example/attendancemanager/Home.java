@@ -2,6 +2,8 @@ package com.example.attendancemanager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,7 +46,16 @@ public class Home extends AppCompatActivity {
         //floatingButton onClick
         addClass.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), AddClass.class)));
 
-
+        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.Profile_nav:
+                        startActivity(new Intent(getApplicationContext(),UserProfile.class));
+                        return;
+                }
+            }
+        });
     }
 
     //Methods
