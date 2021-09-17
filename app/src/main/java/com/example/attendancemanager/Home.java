@@ -83,7 +83,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 adapter.deleteClass(viewHolder.getAbsoluteAdapterPosition());
-                Toast.makeText(getApplicationContext(), "class deleted successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Class Deleted Successfully !", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
     }
