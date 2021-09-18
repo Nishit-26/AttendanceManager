@@ -10,10 +10,10 @@
         android:id="@+id/ivBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:src="@drawable/ic_back"
-        app:tint="@color/colorBlack"
+        android:layout_marginLeft="14dp"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="14dp"/>
+        android:src="@drawable/ic_back"
+        app:tint="@color/colorBlack" />
 
 
 </RelativeLayout>

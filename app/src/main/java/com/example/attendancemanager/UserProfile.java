@@ -2,12 +2,9 @@ package com.example.attendancemanager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class UserProfile extends AppCompatActivity {
 
@@ -20,12 +17,9 @@ public class UserProfile extends AppCompatActivity {
 
         //Back Button part
         back = findViewById(R.id.ivBack);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),Home.class));
-                finish();
-            }
+        back.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), Home.class));
+            finish();
         });
 
     }

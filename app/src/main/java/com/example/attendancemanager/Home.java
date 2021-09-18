@@ -3,7 +3,6 @@ package com.example.attendancemanager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -49,9 +48,9 @@ public class Home extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.Profile_nav:
-                        startActivity(new Intent(getApplicationContext(),UserProfile.class));
+                        startActivity(new Intent(getApplicationContext(), UserProfile.class));
                         return;
                 }
             }
@@ -74,7 +73,7 @@ public class Home extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -100,3 +99,4 @@ public class Home extends AppCompatActivity {
         adapter.stopListening();
     }
 }
+
