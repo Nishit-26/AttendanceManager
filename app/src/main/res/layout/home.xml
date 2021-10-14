@@ -16,8 +16,8 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         app:title="Attendance Manager"
-        app:titleTextColor="@color/colorTextWhite"
-        app:titleMarginStart="32dp"/>
+        app:titleMarginStart="30dp"
+        app:titleTextColor="@color/colorTextWhite" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

@@ -30,7 +30,7 @@ public class Signup extends AppCompatActivity {
     Button signup;
     TextView txtlogin;
     RadioGroup radioGroup;
-    RadioButton genderMale,genderFemale;
+    RadioButton genderMale, genderFemale;
     ProgressBar progressBar;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -75,7 +75,7 @@ public class Signup extends AppCompatActivity {
                 } else if (inputPass.length() < 6) {
                     password.setError("password is too short");
                     password.requestFocus();
-                }else {
+                } else {
 
                     progressBar.setVisibility(View.VISIBLE);
                     firebaseAuth.createUserWithEmailAndPassword(inputEmail, inputPass)
@@ -92,6 +92,7 @@ public class Signup extends AppCompatActivity {
                                                         if (task.isSuccessful()) {
                                                             Toast.makeText(getApplicationContext(), "Registeration Successful!", Toast.LENGTH_SHORT).show();
                                                             startActivity(new Intent(getApplicationContext(), Home.class));
+                                                            finish();
                                                             progressBar.setVisibility(View.GONE);
 
                                                         }
