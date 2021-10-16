@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserProfile"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorWhite"
+    >
 
     <LinearLayout
+        android:id="@+id/Layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -19,17 +21,19 @@
 
     <ImageView
         android:id="@+id/ivBack"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/ic_back"
-        app:tint="@color/colorBlack" />
+        app:tint="@color/colorBlack"
+        android:layout_marginRight="180dp"
+        />
 
     <ImageView
         android:id="@+id/UserPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@mipmap/ic_launcher"
+        android:src="@mipmap/ic_logo_round"
         android:layout_marginTop="16dp"
         />
 
@@ -57,6 +61,21 @@
         android:textSize="14dp"
         />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/Layout1"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DashBoard"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            />
     </LinearLayout>
 
 </RelativeLayout>
