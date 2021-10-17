@@ -32,7 +32,8 @@ public class UserProfile extends AppCompatActivity {
 
         //logout Button
         btnLogout.setOnClickListener(view -> {
-            firebaseAuth.signOut();
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(),Login.class));
         });
 
     }

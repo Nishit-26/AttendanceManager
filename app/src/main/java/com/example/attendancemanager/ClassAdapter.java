@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import org.w3c.dom.Text;
-
 public class ClassAdapter extends FirestoreRecyclerAdapter<ClassModel, ClassAdapter.ClassViewHolder> {
 
 
@@ -31,11 +29,11 @@ public class ClassAdapter extends FirestoreRecyclerAdapter<ClassModel, ClassAdap
     @NonNull
     @Override
     public ClassViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.class_item,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.class_item, parent, false);
         return new ClassViewHolder(v);
     }
 
-    public void deleteClass(int position){
+    public void deleteClass(int position) {
         getSnapshots().getSnapshot(position).getReference().delete();
     }
 

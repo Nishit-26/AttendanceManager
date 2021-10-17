@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorEditText"
     android:fitsSystemWindows="true"
-    tools:context=".Home"
-    >
+    tools:context=".Home">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -26,7 +25,8 @@
         android:layout_above="@+id/bottom_nav"
         android:layout_below="@+id/toolbar"
         android:layout_marginTop="1dp"
-        android:layout_marginBottom="-2dp" />
+        android:layout_marginBottom="-2dp"
+        android:autofillHints="name" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
