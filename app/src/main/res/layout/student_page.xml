@@ -10,29 +10,47 @@
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        >
+        android:background="@color/colorPrimary">
 
-        <TextView
-            android:id="@+id/barClassname"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/segoe_ui"
-            android:text="Classname"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@color/colorTextWhite"/>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_back"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp" />
 
-        <TextView
-            android:id="@+id/barsubjectname"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/segoe_ui"
-            android:text="Subjectname"
-            android:textSize="12dp"
-            android:textColor="@color/colorTextWhite"
-            android:layout_below="@+id/barClassname"/>
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/barClassname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/segoe_ui"
+                android:text="Classname"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/barsubjectname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/barClassname"
+                android:fontFamily="@font/segoe_ui"
+                android:text="Subjectname"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="12dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
@@ -41,19 +59,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/topBar"
-        android:padding="8dp"/>
+        android:padding="8dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAddStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="18dp"
         android:backgroundTint="@color/colorButton"
         android:src="@drawable/ic_add"
         app:tint="@color/colorWhite"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:layout_alignParentRight="true" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </RelativeLayout>

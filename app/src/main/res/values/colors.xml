@@ -14,5 +14,7 @@
     <color name="colorPlaceHolder">#FF505050</color>
     <color name="colorAddbtn">#FFFFFF</color>
     <color name="colorBottomNav">#FFFFFF</color>
+    <color name="colorPresent">#8BC34A</color>
+    <color name="colorAbsent">#F44336</color>
 
 </resources>

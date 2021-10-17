@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    >
+
+    <TextView
+        android:id="@+id/Enrollment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enrollment"
+        android:textColor="@color/colorTextBlack"
+        android:textSize="14dp"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/StudentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="55dp"
+        android:layout_toEndOf="@+id/Enrollment"
+        android:layout_toRightOf="@+id/Enrollment"
+        android:text="Student Name"
+        android:textColor="@color/colorTextBlack"
+        android:textSize="14dp" />
+
+    <CheckBox
+        android:id="@+id/P"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="42dp"
+        android:layout_toEndOf="@+id/StudentName"
+        android:layout_toRightOf="@+id/StudentName"
+        android:buttonTint="@color/colorPresent"
+        android:text="P" />
+
+    <CheckBox
+        android:id="@+id/A"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="22dp"
+        android:layout_toEndOf="@+id/P"
+        android:layout_toRightOf="@+id/StudentName"
+        android:buttonTint="@color/colorAbsent"
+        android:text="A" />
+
+
+</RelativeLayout>
