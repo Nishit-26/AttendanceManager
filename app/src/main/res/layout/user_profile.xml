@@ -4,78 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserProfile"
     android:background="@color/colorWhite"
-    >
+    tools:context=".UserProfile">
 
     <LinearLayout
         android:id="@+id/Layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
         android:background="@drawable/profile_bg"
-        android:padding="12dp"
         android:elevation="18sp"
-        >
-
-    <ImageView
-        android:id="@+id/ivBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_back"
-        app:tint="@color/colorBlack"
-        android:layout_marginRight="180dp"
-        />
-
-    <ImageView
-        android:id="@+id/UserPhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/ic_logo_round"
-        android:layout_marginTop="16dp"
-        />
-
-    <TextView
-        android:id="@+id/DisplyName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/UserPhoto"
-        android:text="Username"
-        android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_marginTop="14dp"
-        android:fontFamily="@font/segoe_ui_bold"
-        android:textSize="18dp"
-        />
+        android:orientation="vertical"
+        android:padding="12dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/DisplyName"
-        android:text="EmailAddress@gamil.com"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:fontFamily="@font/segoe_ui_bold"
-        android:textSize="14dp"
-        />
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="170dp"
+            android:src="@drawable/ic_back"
+            app:tint="@color/colorBlack" />
+
+        <ImageView
+            android:id="@+id/UserPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:src="@mipmap/ic_logo_round" />
+
+        <TextView
+            android:id="@+id/DisplyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/UserPhoto"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:gravity="center"
+            android:text="Username"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/DisplyName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:gravity="center"
+            android:text="EmailAddress@gamil.com"
+            android:textSize="14dp" />
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/Layout1"
-        android:gravity="center"
-        >
+        android:layout_below="@+id/Layout1">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
             android:text="DashBoard"
             android:textColor="@color/colorBlack"
-            android:textSize="20sp"
-            />
-    </LinearLayout>
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/Logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/button_background"
+            android:text="Log out"
+            android:textAllCaps="false" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
