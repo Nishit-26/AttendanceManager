@@ -21,6 +21,7 @@ import com.google.firebase.firestore.Query;
 
 public class Home extends AppCompatActivity {
 
+    //Initializations
     RecyclerView recyclerView;
     BottomNavigationView bottomNavigationView;
     FloatingActionButton addClass;
@@ -28,6 +29,7 @@ public class Home extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference classRef = db.collection("Class");
     ClassAdapter adapter;
+    //ClassModel classModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +41,23 @@ public class Home extends AppCompatActivity {
         addClass = findViewById(R.id.btnAdd);
         bottomNavigationView = findViewById(R.id.bottom_nav);
 
+        //ItemOnClick
+//        adapter.setOnItemCLickListener(new ClassAdapter.OnItemCLickListener() {
+//            @Override
+//            public void onClick(int position) {
+//                startActivity(new Intent(getApplicationContext(),StudentPage.class));
+//            }
+//        });
+
+
         //recyclerSetup
+        //recyclerView setup
         setUpRecyclerView();
 
         //floatingButton onClick
         addClass.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), AddClass.class)));
 
+        //bottomNavigationView OnClick
         bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item) {
@@ -56,6 +69,8 @@ public class Home extends AppCompatActivity {
             }
         });
     }
+
+
 
     //Methods
     private void setUpRecyclerView() {
@@ -73,6 +88,7 @@ public class Home extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
+        //Swipe left to delete class
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -81,18 +97,21 @@ public class Home extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                
                 adapter.deleteClass(viewHolder.getAbsoluteAdapterPosition());
                 Toast.makeText(getApplicationContext(), "Class Deleted Successfully !", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
     }
 
+    //onStart()
     @Override
     protected void onStart() {
         super.onStart();
         adapter.startListening();
     }
 
+    //onStop()[
     @Override
     protected void onStop() {
         super.onStop();

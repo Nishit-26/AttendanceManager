@@ -13,6 +13,14 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 public class ClassAdapter extends FirestoreRecyclerAdapter<ClassModel, ClassAdapter.ClassViewHolder> {
 
+//    public void setOnItemCLickListener(OnItemCLickListener onItemCLickListener) {
+//        this.onItemCLickListener = onItemCLickListener;
+//    }
+//
+//    public OnItemCLickListener onItemCLickListener;
+//    public interface OnItemCLickListener{
+//        void onClick(int position);
+//    }
 
     public ClassAdapter(FirestoreRecyclerOptions<ClassModel> options) {
         super(options);
@@ -33,21 +41,25 @@ public class ClassAdapter extends FirestoreRecyclerAdapter<ClassModel, ClassAdap
         return new ClassViewHolder(v);
     }
 
+    //to Delete Class
     public void deleteClass(int position) {
         getSnapshots().getSnapshot(position).getReference().delete();
     }
 
+    //ClassViewHolder
     class ClassViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtclassname;
         TextView txtsubjectname;
         TextView txtpriority;
 
-        public ClassViewHolder(@NonNull View itemView) {
+        //Constructor of ClassViewHolder
+        public ClassViewHolder(@NonNull View itemView /*OnItemCLickListener onItemCLickListener*/) {
             super(itemView);
             txtclassname = itemView.findViewById(R.id.tv_classname);
             txtsubjectname = itemView.findViewById(R.id.tv_subjectname);
             txtpriority = itemView.findViewById(R.id.tv_priority);
+            //itemView.setOnClickListener(view -> onItemCLickListener.onClick(getAdapterPosition()));
         }
     }
 }

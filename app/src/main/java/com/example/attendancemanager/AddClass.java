@@ -51,6 +51,7 @@ public class AddClass extends AppCompatActivity {
 
     private void addClass() {
 
+        //Get input from User
         String inputClassname = className.getText().toString().trim();
         String inputSubjectname = subjectName.getText().toString().trim();
         int inputPriority = priority.getValue();
